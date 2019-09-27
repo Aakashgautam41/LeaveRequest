@@ -1,3 +1,4 @@
+
 .form-login{
 	border-radius: 0.5rem;
 	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
@@ -92,7 +93,7 @@
 }
 
 table {
-	font-size: 14px;
+	font-size: 12px;
 	border-collapse: collapse;
 }
 
@@ -141,7 +142,9 @@ button, select {
 	clear: both;
 	zoom: 1;
 	overflow: auto;
+	margin-left: -11px;
 }
+
 div.scrollable {
     width: 100px;
     height: 100%;
@@ -228,3 +231,9 @@ div.scrollable {
     opacity: 1;
 }
 
+tr{
+	text-align: center;
+}
+td{
+	text-align: center;
+}

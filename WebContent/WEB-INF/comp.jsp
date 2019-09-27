@@ -12,10 +12,14 @@
 	         <th scope="col">Ticket/Scr <i class="fas fa-sort ml-1" onclick="sort()"></i></th>
 	         <th scope="col">Date <i class="fas fa-sort ml-1" onclick="sort()"></i></th>
 	         <th scope="col">Night Shift <i class="fas fa-sort ml-1" onclick="sort()"></i></th>
+       		 <th scope="col">Requested on <i class="fas fa-sort ml-1" onclick="sort()"> </i></th>
+	         <th scope="col">Reviewed By <i class="fas fa-sort ml-1" onclick="sort()"> </i></th>
+       		 <th scope="col">Reviewed 	on <i class="fas fa-sort ml-1" onclick="sort()"> </i></th>
 	        
-			     <% if(session.getAttribute("desg").equals("Developer")){ %>
+		     <% if(session.getAttribute("desg").equals("Developer")){ %>
 	            <th scope="col">Status <i class="fas fa-sort ml-1" onclick="sort()"> </i></th>
-	         <% } else { %>
+	         <% }
+		     else { %>     
 	            <th scope="col">Action <i class="fas fa-sort ml-1" onclick="sort()"> </i></th>
 	         <% } %>
 	
@@ -36,9 +40,12 @@
 	         <td><%=al.get(i) .getTicket()%></td>
 	         <td><%=al.get(i) .getCompDate()%></td>
 	         <td><%=al.get(i) .getNightShift()%></td>
+	         <td><%=al.get(i).getRequestTime()%></td>
+	         <td><%=al.get(i).getReviewedBy()%></td>
+	         <td><%=al.get(i).getReviewTime()%></td>
 	    
 	    	<!-- changes action/status column view based on designation --> 
-	         <% if(session.getAttribute("desg").equals("Developer")) { %> <!-- designation is developer -->
+	         <% if(session.getAttribute("desg").equals("Developer")) { %>			 	<!-- designation is developer -->
 			         <% if ((al.get(i).getStatus()).equals("Pending")) { %> 
 			         <td class="text-pending font-weight-bold"><%=al.get(i).getStatus()%></td>
 			         <% } %>
@@ -48,14 +55,14 @@
 			         <% if ((al.get(i).getStatus()).equals("Rejected")) { %>
 			         <td class="text-rejected font-weight-bold"><%=al.get(i).getStatus()%></td>
 			         <% } %>
-	         <% } else { %>	<!-- designation is !developer-->	
+         	<% } else { %>																															<!-- designation is !developer-->	
 	         <!-- changes action/status column view based on status-->
 			         <% if ((al.get(i).getStatus()).equals("Approved")) { %>	<!-- status == approved -->	
 			   			<td class="text-approved font-weight-bold" > Approved </td>
 					<% } else if ((al.get(i).getStatus()).equals("Rejected")) { %>	<!-- status == rejected -->	
 			         <td class="text-rejected font-weight-bold" > Rejected </td>
 			         <% } else { %>	<!-- status == pending -->	
-			         <td class="">
+			         <td>
 			            <button type="button" class=" btn-check" id="<%=al.get(i).getId()%>"><i class="fas fa-check "></i></button>
 			            <button type="button" class=" btn-reject" id="<%=al.get(i).getId()%>"><i class="fas fa-times"></i></button>
 			         </td>

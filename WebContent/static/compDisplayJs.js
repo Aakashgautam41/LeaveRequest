@@ -53,6 +53,18 @@ $('.reject-btn').click(function(){
     });
 });
 
+function sort(){
+	 $('#data-table').DataTable({
+	 		destroy: true,
+	    	"ordering": true,
+	    	fixedHeader: true,
+	    },
+	    {
+	        "pagingType": "scrolling"
+	    });
+	 $(".fa-sort").hide()
+}
+
 $('.targetRow').click(function() {
 	var url = "comp/"+$(this).attr("id").trim()
 	console.log(url);

@@ -1,6 +1,9 @@
 package com.backyardev.util;
 
+import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -179,9 +182,39 @@ public class LeaveRequestService {
 		
 		ArrayList<CompoffReqObject> al = new ArrayList<>();
 		ResultSet rs = DatabaseQueries.getCompoffTable(desg, tl_name, ecode);
+	
 		try {
+	
 			while(rs.next()) {
 				CompoffReqObject obj = new CompoffReqObject();
+
+				if(rs.getString("reviewed_time") !=null) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+				    java.util.Date parsedDate = dateFormat.parse(rs.getString("reviewed_time"));
+				    Timestamp timestamp = new Timestamp(parsedDate.getTime());
+				    Date date= new Date(timestamp.getTime());  
+					obj.setReviewTime(date.toString());
+					
+				}else {
+					obj.setReviewTime("Not Reviewed");
+				}
+				
+				if(rs.getString("request_timestamp") != null) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+				    java.util.Date parsedDate = dateFormat.parse(rs.getString("request_timestamp"));
+				    Timestamp timestamp = new Timestamp(parsedDate.getTime());
+				    Date date= new Date(timestamp.getTime());  
+					obj.setRequestTime(date.toString());	
+				}else {
+					obj.setRequestTime("Not Reviewed");	
+				}
+								
+				if(rs.getString("reviewed_by") != null) {
+					obj.setReviewedBy(rs.getString("reviewed_by"));	
+				}else {
+					obj.setReviewedBy("Not Reviewed");	
+				}
+				
 				if(rs.getInt("status")== 0) {
 					obj.setStatus("Pending");
 				} else if(rs.getInt("status")== 1) {

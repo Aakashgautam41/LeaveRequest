@@ -2,10 +2,29 @@ package com.backyardev.util;
 
 public class CompoffReqObject {
 
-	String ecode, name, project, teamLead, manager, compDate, ticket, desc, status;
+	String ecode, name, project, teamLead, manager, compDate, ticket, desc, status, reviewedBy,requestTime,reviewTime;
 	int id;
 	String nightShift = "0";
 	
+	public String getRequestTime() {
+		return requestTime;
+	}
+	public void setRequestTime(String requestTime) {
+		this.requestTime = requestTime;
+	}
+	public String getReviewTime() {
+		return reviewTime;
+	}
+	public void setReviewTime(String reviewTime) {
+		this.reviewTime = reviewTime;
+	}
+	
+	public String getReviewedBy() {
+		return reviewedBy;
+	}
+	public void setReviewedBy(String reviewedBy) {
+		this.reviewedBy = reviewedBy;
+	}
 	public String getStatus() {
 		return status;
 	}
