@@ -479,7 +479,7 @@ public class DatabaseQueries {
 	// Get Comp-off dates for availing in Leave Form
 	public static  ArrayList<CompoffReqObject> getCompoffDates(String ecode) {
 		ArrayList<CompoffReqObject> al = new ArrayList<>();
-		sql = "select * from COMPOFF_REQUEST where ecode = ?  and avail_status=0 order by COMPOFF_REQUEST.request_timestamp desc ";
+		sql = "select * from COMPOFF_REQUEST where ecode = ?  and avail_status= 0 order by COMPOFF_REQUEST.request_timestamp desc ";
 		try {
 			conn = createConnection();
 			pst =  conn.prepareStatement(sql);
